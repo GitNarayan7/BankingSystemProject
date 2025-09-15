@@ -3,9 +3,35 @@
 #include <cstdlib>
 #include <string>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
+int readUser(){
+    string filename = "bank.csv";
+    ifstream file(filename);
+
+    if(!file.is_open()){
+        cout << "could not open the file";
+    }
+
+    string line;
+    while(getline(file,line)){
+        stringstream split(line);
+        string cell;
+        vector<string>row;
+
+        while(getline(split,cell,',')){
+         row.push_back(cell);
+        }
+    for(string value: row){
+        cout << value << " ";
+    }
+    cout << endl;
+}
+    file.close();
+    return 0;
+}
 
 int userSave(int cid,string username,string nominee, unsigned long long acn, unsigned long long phone){
     fstream fout;
@@ -237,7 +263,7 @@ public:
 
 
 int main(){
-
+        readUser();
     vector<user> users;
     vector<employee> employees;
     vector<manager> managers;
